@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/sidebar.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+  <title>Eureka</title>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div id="mySidebar" class="sidebar" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()">
+    <div class="dropdown">
+        <a href="javascript:void(0);" onclick="toggleDropdown('dropdown-retail')">
+          <i class="material-icons">account_balance</i><span class="icon-text">Retail</span>
+        </a>
+        <div id="dropdown-retail" class="dropdown-content">
+          <a href="#">Retail Sub 1</a>
+          <a href="#">Retail Sub 2</a>
+        </div>
+      </div>
+    <a href="#"><i class="material-icons">copyright</i><span class="icon-text">Oracle</span></a>
+    <a href="#"><i class="material-icons">real_estate_agent</i><span class="icon-text">MSP</span></a>
+    <a href="#"><i class="material-icons">local_convenience_store</i><span class="icon-text">Commercial</span></a>
+    <a href="#"><i class="material-icons">school</i><span class="icon-text">KER</span></a>
+  </div>
+
+  <!-- Main content -->
+  <div id="main">
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="JS/sidebar.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+</body>
+</html>
