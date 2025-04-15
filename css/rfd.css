@@ -1,3 +1,18 @@
+.layout{
+    display: flex;
+}
+
+.sidebar-iframe{
+    width: 250px;
+    height: 100vh;
+    border:none;
+}
+
+.main-content{
+    flex: 1;
+    padding: 20px;
+}
+
 .head{
     color: red;
     font-size: 30px;
@@ -17,5 +32,5 @@ table, th, td {
   }
 
   table{
-    width: 50%;
+    width: auto;
   }
