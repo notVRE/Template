@@ -1,0 +1,21 @@
+.head{
+    color: red;
+    font-size: 30px;
+    padding-top: 50px;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-style: double;
+}
+
+.table-wrapper{
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+table, th, td {
+    border: 1px solid;
+  }
+
+  table{
+    width: 50%;
+  }
