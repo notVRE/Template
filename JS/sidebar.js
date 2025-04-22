@@ -1,32 +1,25 @@
-var mini = true;
+let currentOpenSection = null;
 
-function toggleSidebar() {
-  const sidebar = document.getElementById("mySidebar");
-  const main = document.getElementById("main");
+function showDrawerSection(sectionId) {
+  const drawer = document.getElementById('drawer');
+  const target = document.getElementById(sectionId);
 
-  if (mini) {
-    console.log("opening sidebar");
-    sidebar.style.width = "250px";
-    main.style.marginLeft = "250px";
-    mini = false;
+  if (currentOpenSection === target) {
+    // If clicked again on the same section -> close it
+    drawer.classList.remove('active');
+    target.classList.remove('active');
+    currentOpenSection = null;
   } else {
-    console.log("closing sidebar");
-    sidebar.style.width = "85px";
-    main.style.marginLeft = "85px";
-    mini = true;
+    // Open drawer and show the selected section
+    drawer.classList.add('active');
+    
+    const sections = drawer.querySelectorAll('.drawer-section');
+    sections.forEach(section => section.classList.remove('active'));
+    
+    target.classList.add('active');
+    currentOpenSection = target;
   }
 }
-
-function toggleDropdown(id) {
-  const content = document.getElementById(id);
-  content.style.display = content.style.display === "flex" ? "none" : "flex";
-}
-
-function toggleDropdown(id) {
-  const el = document.getElementById(id);
-  if (el.style.display === "flex") {
-    el.style.display = "none";
-  } else {
-    el.style.display = "flex";
-  }
+function toggleSubList(element) {
+  element.classList.toggle('open');
 }

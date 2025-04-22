@@ -1,98 +1,151 @@
 body {
-    font-family: "Lato", sans-serif;
-  }
-  
-  .sidebar {
-    height: 200%;
-    width: 85px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #fff;
-    transition: 0.5s;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding-top: 300px;
-    white-space: nowrap;
-  }
-  
-  .sidebar a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: flex;
-    align-items: center;
-  }
-  
-  .sidebar a:hover {
-    color: #cc1818;
-  }
-  
-  .material-icons,
-  .icon-text {
-    vertical-align: middle;
-  }
-  
-  .material-icons {
-    padding-bottom: 3px;
-    margin-right: 30px;
-  }
-  
-  
-  /* ✅ Dropdown Styles - Moved OUT of media query */
-  .dropdown {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-  }
-  
-  .dropdown > a {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 20px;
-    color: #818181;
-  }
-  
-  .dropdown-content {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    margin-left: 60px;
-  }
-  
-  .dropdown-content a {
-    font-size: 16px;
-    padding: 4px 0;
-    color: #818181;
-    text-decoration: none;
-  }
-  
-  .dropdown-content a:hover {
-    color: #cc1818;
-  }
-  
-  /* Main content */
-  #main {
-    padding: 16px;
-    margin-left: 85px;
-    transition: margin-left 0.5s;
-  }
-  
-  /* Responsive tweaks */
-  @media screen and (max-height: 450px) {
-    .sidebar {
-      padding-top: 15px;
-    }
-    .sidebar a {
-      font-size: 18px;
-    }
-  }
+  margin: 0;
+  display: flex;
+  font-family: Arial, sans-serif;
+  background: #f8f3f7;
+}
+
+.sidebar {
+  width: 80px;
+  height: 100vh;  /* 💡 This makes it full screen height */
+  background: #f7f1f8;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  box-sizing: border-box;
+  justify-content: flex-start;  /* Icons stay at the top */
+}
+
+.nav-item {
+  border: none;
+  background: none;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: #3c3c3c;
+}
+
+.nav-item .material-icons {
+  font-size: 28px;
+}
+
+.nav-item .label {
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.nav-item.active .label,
+.nav-item.active .material-icons {
+  color: #6200ee;
+}
+
+.drawer {
+  display: none;
+  flex-direction: column;
+  background: #f7f1f8;
+  padding: 20px;
+  width: 240px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.drawer.active {
+  display: flex;
+}
+
+.drawer-header {
+  font-weight: bold;
+  margin-bottom: 15px;
+  background: rgba(98, 0, 238, 0.1);
+  padding: 8px 12px;
+  border-radius: 20px;
+}
+
+.drawer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.drawer li {
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.drawer li:hover {
+  background: rgba(98, 0, 238, 0.1);
+}
+
+.drawer-section {
+  display: none;
+}
+
+.dropdown-list {
+  list-style: none;
+  padding-left: 20px;
+  display: none;
+}
+
+.drawer-section.open .dropdown-list {
+  display: block;
+}
+
+.drawer-section.active {
+  display: block;
+}
+
+.drawer-section .dropdown-list {
+  display: none;
+}
+
+.drawer-section.active .dropdown-list {
+  display: block;
+}
+
+.sub-list {
+  display: none;
+  padding-left: 20px;
+}
+
+li.open > .sub-list {
+  display: block;
+}
+
+li {
+  cursor: pointer;
+  user-select: none;
+}
+
+.drawer li {
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.drawer li:hover {
+  background: rgba(98, 0, 238, 0.05);  /* Softer hover */
+}
+
+.sub-list {
+  display: none;
+  padding-left: 20px;   /* Indent for hierarchy */
+  margin-top: 4px;
+}
+
+li.open > .sub-list {
+  display: block;
+}
+
+/* Make nested items more subtle */
+.sub-list li {
+  background: none;          /* Remove extra color layering */
+  padding: 6px 12px;
+}
+
+.sub-list li:hover {
+  background: rgba(98, 0, 238, 0.05);
+}
