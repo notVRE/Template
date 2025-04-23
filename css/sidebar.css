@@ -124,6 +124,7 @@ li {
   border-radius: 6px;
   cursor: pointer;
   user-select: none;
+  border-bottom: 1px solid rgba(185, 16, 16, 0.1); /* 🔽 subtle underline */
 }
 
 .drawer li:hover {
@@ -142,8 +143,9 @@ li.open > .sub-list {
 
 /* Make nested items more subtle */
 .sub-list li {
-  background: none;          /* Remove extra color layering */
+  background: transparent;          /* Remove extra color layering */
   padding: 6px 12px;
+  border-bottom: 1px solid rgba(87, 13, 13, 0.05);
 }
 
 .sub-list li:hover {

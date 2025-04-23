@@ -12,23 +12,23 @@
 
   <!-- Sidebar -->
   <div class="sidebar">
-    <button class="nav-item active">
+    <a href="home.html" class="nav-item" onclick="showDrawerSection(null, this)">
       <span class="material-icons">home</span>
       <span class="label">Home</span>
-    </button>
-    <button class="nav-item" onclick="showDrawerSection('developSection')">
+    </a>
+    <button class="nav-item" onclick="showDrawerSection('developSection',this)">
       <span class="material-icons">code</span>
       <span class="label">Develop</span>
     </button>
     
-    <button class="nav-item" onclick="showDrawerSection('getStartedSection')">
+    <button class="nav-item" onclick="showDrawerSection('getStartedSection',this)">
       <span class="material-icons">apps</span>
       <span class="label">Get started</span>
     </button>
     
-    <button class="nav-item" onclick="showDrawerSection('foundationSection')">
+    <button class="nav-item" onclick="showDrawerSection('foundationSection',this)">
       <span class="material-icons">description</span>
-      <span class="label">Foundations</span>
+      <span class="label">Back office request</span>
     </button>
   </div>
   
