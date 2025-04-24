@@ -169,3 +169,9 @@ li.open > .sub-list {
   padding: 6px 12px;
   border-bottom: 1px solid rgba(87, 13, 13, 0.05);
 }
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  margin-bottom: 4px;
+}
