@@ -32,10 +32,22 @@ function showDrawerSection(sectionId, element) {
   }
 }
 
-// handle nested dropdowns inside drawer only
-document.querySelectorAll('.drawer li > .sub-list').forEach(subList => {
-  subList.parentElement.addEventListener('click', function (e) {
-    e.stopPropagation(); // Prevents triggering parent clicks
-    this.classList.toggle('open');
-  });
+function toggleSubList(element) {
+  element.classList.toggle('open');
+}
+
+// Add toggle only if the item has a sub-list
+document.querySelectorAll('.drawer li').forEach(item => {
+  const subList = item.querySelector(':scope > .sub-list');
+  if (subList) {
+    item.addEventListener('click', function (e) {
+      e.stopPropagation(); // Stop bubbling up
+      this.classList.toggle('open');
+    });
+  } else {
+    // If no sub-list, prevent the click from closing parent dropdown
+    item.addEventListener('click', function (e) {
+      e.stopPropagation(); // Just stops bubbling, doesn't toggle anything
+    });
+  }
 });

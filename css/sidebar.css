@@ -19,14 +19,21 @@ body {
 }
 
 .nav-item {
-  border: none;
-  background: none;
-  margin: 10px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
+  justify-content: center;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 10px 0;
   color: #3c3c3c;
+  font-family: inherit;
+  cursor: pointer;
+  width: 100%; /* ensure full width */
+  box-sizing: border-box;
+  text-align: center; /* centers label text */
+  white-space: nowrap; /* prevents text from wrapping */
 }
 
 .nav-item .material-icons {
@@ -36,6 +43,11 @@ body {
 .nav-item .label {
   font-size: 12px;
   margin-top: 4px;
+  text-align: center;
+  white-space: normal; /* allows wrapping */
+  word-break: break-word; /* breaks long words if needed */
+  width: 100%;
+
 }
 
 .nav-item.active .label,
@@ -76,7 +88,20 @@ body {
 }
 
 .drawer li:hover {
-  background: rgba(98, 0, 238, 0.1);
+  background-color: #6200ee;
+  color: white;
+}
+
+/* Style all nested li elements inside dropdowns */
+.drawer li ul li:hover {
+  background-color: #7e57c2;
+  color: white;
+}
+
+/* Even deeper levels */
+.drawer li ul li ul li:hover {
+  background-color: #9575cd;
+  color: white;
 }
 
 .drawer-section {
@@ -127,14 +152,11 @@ li {
   border-bottom: 1px solid rgba(185, 16, 16, 0.1); /* 🔽 subtle underline */
 }
 
-.drawer li:hover {
-  background: rgba(98, 0, 238, 0.05);  /* Softer hover */
-}
-
 .sub-list {
   display: none;
   padding-left: 20px;   /* Indent for hierarchy */
   margin-top: 4px;
+  background: none;
 }
 
 li.open > .sub-list {
@@ -146,8 +168,4 @@ li.open > .sub-list {
   background: transparent;          /* Remove extra color layering */
   padding: 6px 12px;
   border-bottom: 1px solid rgba(87, 13, 13, 0.05);
-}
-
-.sub-list li:hover {
-  background: rgba(98, 0, 238, 0.05);
 }

@@ -26,10 +26,10 @@
       <span class="label">Get started</span>
     </button>
     
-    <button class="nav-item" onclick="showDrawerSection('foundationSection',this)">
+    <a class="nav-item" onclick="showDrawerSection('foundationSection',this)">
       <span class="material-icons">description</span>
       <span class="label">Back office request</span>
-    </button>
+    </a>
   </div>
   
   <div class="drawer" id="drawer">
@@ -37,9 +37,9 @@
     <div class="drawer-section" id="developSection">
       <div class="drawer-header">Develop overview</div>
       <ul class="dropdown-list">
-        <li onclick="toggleSubList(this)">Android
+        <li>Android
           <ul class="sub-list">
-            <li onclick="event.stopPropagation(); toggleSubList(this)">Jetpack
+            <li onclick="event.stopPropagation()">Jetpack
               <ul class="sub-list">
                 <li>Compose</li>
                 <li>Navigation</li>
@@ -70,10 +70,6 @@
       </ul>
     </div>
   
-  </div>
-  <!-- Main content -->
-  <div id="main">
-
   </div>
 
   <!-- Scripts -->
