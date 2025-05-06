@@ -1,3 +1,4 @@
+/* General styles for the layout */
 body {
   margin: 0;
   display: flex;
@@ -5,9 +6,10 @@ body {
   background: #f8f3f7;
 }
 
+/* Sidebar styling */
 .sidebar {
   width: 80px;
-  height: 100vh;  /* 💡 This makes it full screen height */
+  height: 100vh;
   background: #f7f1f8;
   border-right: 1px solid #ddd;
   display: flex;
@@ -15,7 +17,7 @@ body {
   align-items: center;
   padding-top: 10px;
   box-sizing: border-box;
-  justify-content: flex-start;  /* Icons stay at the top */
+  justify-content: flex-start;
 }
 
 .nav-item {
@@ -30,10 +32,10 @@ body {
   color: #3c3c3c;
   font-family: inherit;
   cursor: pointer;
-  width: 100%; /* ensure full width */
+  width: 100%;
   box-sizing: border-box;
-  text-align: center; /* centers label text */
-  white-space: nowrap; /* prevents text from wrapping */
+  text-align: center;
+  white-space: nowrap;
 }
 
 .nav-item .material-icons {
@@ -44,10 +46,9 @@ body {
   font-size: 12px;
   margin-top: 4px;
   text-align: center;
-  white-space: normal; /* allows wrapping */
-  word-break: break-word; /* breaks long words if needed */
+  white-space: normal;
+  word-break: break-word;
   width: 100%;
-
 }
 
 .nav-item.active .label,
@@ -55,13 +56,14 @@ body {
   color: #6200ee;
 }
 
+/* Drawer styling */
 .drawer {
   display: none;
   flex-direction: column;
   background: #f7f1f8;
   padding: 20px;
   width: 240px;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .drawer.active {
@@ -76,6 +78,7 @@ body {
   border-radius: 20px;
 }
 
+/* Dropdown and Sublist styling */
 .drawer ul {
   list-style: none;
   padding: 0;
@@ -87,88 +90,38 @@ body {
   cursor: pointer;
 }
 
-.drawer li:hover {
+.hover-target {
+  display: inline-block;
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.hover-target:hover {
   background-color: #6200ee;
   color: white;
 }
 
-/* Style all nested li elements inside dropdowns */
-.drawer li ul li:hover {
-  background-color: #7e57c2;
-  color: white;
-}
-
-/* Even deeper levels */
-.drawer li ul li ul li:hover {
-  background-color: #9575cd;
-  color: white;
-}
-
-.drawer-section {
-  display: none;
-}
-
-.dropdown-list {
-  list-style: none;
-  padding-left: 20px;
-  display: none;
-}
-
-.drawer-section.open .dropdown-list {
-  display: block;
-}
-
-.drawer-section.active {
-  display: block;
-}
-
-.drawer-section .dropdown-list {
-  display: none;
-}
-
-.drawer-section.active .dropdown-list {
-  display: block;
-}
-
 .sub-list {
   display: none;
   padding-left: 20px;
-}
-
-li.open > .sub-list {
-  display: block;
-}
-
-li {
-  cursor: pointer;
-  user-select: none;
-}
-
-.drawer li {
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  user-select: none;
-  border-bottom: 1px solid rgba(185, 16, 16, 0.1); /* 🔽 subtle underline */
-}
-
-.sub-list {
-  display: none;
-  padding-left: 20px;   /* Indent for hierarchy */
   margin-top: 4px;
-  background: none;
+}
+
+.sub-list.open {
+  display: block;
 }
 
 li.open > .sub-list {
   display: block;
 }
 
-/* Make nested items more subtle */
 .sub-list li {
-  background: transparent;          /* Remove extra color layering */
+  background: transparent;
   padding: 6px 12px;
   border-bottom: 1px solid rgba(87, 13, 13, 0.05);
 }
+
 .logo-icon {
   width: 32px;
   height: 32px;

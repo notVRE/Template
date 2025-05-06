@@ -16,64 +16,42 @@
       <img src="path/to/your-logo.png" alt="Logo" class="logo-icon" />
       <span class="label">Home</span>
     </a>
-    <button class="nav-item" onclick="showDrawerSection('developSection',this)">
-      <span class="material-icons">code</span>
-      <span class="label">Develop</span>
-    </button>
-    
     <button class="nav-item" onclick="showDrawerSection('getStartedSection',this)">
       <span class="material-icons">apps</span>
       <span class="label">Get started</span>
     </button>
-    
     <a class="nav-item" onclick="showDrawerSection('foundationSection',this)">
       <span class="material-icons">description</span>
       <span class="label">Back office request</span>
     </a>
   </div>
-  
+
   <div class="drawer" id="drawer">
-  
-    <div class="drawer-section" id="developSection">
+    <div class="drawer-section active" id="developSection">
       <div class="drawer-header">Develop overview</div>
       <ul class="dropdown-list">
-        <li>Android
+        <li>
+          <span class="hover-target">Android</span>
           <ul class="sub-list">
-            <li onclick="event.stopPropagation()">Jetpack
+            <li>
+              <span class="hover-target">Jetpack</span>
               <ul class="sub-list">
-                <li>Compose</li>
-                <li>Navigation</li>
+                <li><span class="hover-target">Compose</span></li>
+                <li><span class="hover-target">Navigation</span></li>
               </ul>
             </li>
-            <li>Studio</li>
+            <li><span class="hover-target">Studio</span></li>
           </ul>
         </li>
         <li>Flutter</li>
         <li>Web</li>
       </ul>
     </div>
-  
-    <div class="drawer-section" id="getStartedSection">
-      <div class="drawer-header">Get Started overview</div>
-      <ul class="dropdown-list">
-        <li>Installation</li>
-        <li>Quick Start</li>
-        <li>Examples</li>
-      </ul>
-    </div>
-  
-    <div class="drawer-section" id="foundationSection">
-      <div class="drawer-header">Foundations</div>
-      <ul class="dropdown-list">
-        <li>Principles</li>
-        <li>Guidelines</li>
-      </ul>
-    </div>
-  
   </div>
 
   <!-- Scripts -->
-  <script src="JS/sidebar.js"></script>
+  <script src="js/sidebar.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
 </body>
 </html>
