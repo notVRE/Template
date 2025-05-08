@@ -8,8 +8,10 @@ body {
 
 /* Sidebar styling */
 .sidebar {
-  width: 80px;
+  position: relative;
   height: 100vh;
+  overflow-y: auto;
+  width: 80px;
   background: #f7f1f8;
   border-right: 1px solid #ddd;
   display: flex;
@@ -17,7 +19,6 @@ body {
   align-items: center;
   padding-top: 10px;
   box-sizing: border-box;
-  justify-content: flex-start;
 }
 
 .nav-item {

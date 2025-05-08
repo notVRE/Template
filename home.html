@@ -1,40 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/home.css">
-    <title>Document</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KeyBank 200</title>
 
+  <!-- Google Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f2f2f2;
+    }
+
+    .header {
+      background-color: white;
+      padding: 40px 20px 10px;
+    }
+
+    .header img {
+      max-width: 300px;
+    }
+
+    .slogan {
+      color: #d00000;
+      font-size: 24px;
+      font-weight: bold;
+      transform: rotate(-5deg);
+      margin-top: 10px;
+    }
+
+    .grid-container {
+      background-color: #d3d3d3;
+      padding: 40px 20px;
+    }
+
+    .section-title {
+      color: #d00000;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 30px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .icon-circle {
+      width: 60px;
+      height: 60px;
+      background-color: #d00000;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 32px;
+    }
+
+    .material-symbols-outlined {
+      font-size: 32px;
+    }
+
+    .icon-label {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
 </head>
-<body>    
-    <h1 class="hero-title">Material Design</h1>
-    <p class="hero-subtitle">
-        Material 3 is the latest version of Google's open-source design system.
-        Design and build beautiful, usable products with Material 3.
-    </p>
-    <a href="#" class="button">Get started</a>
-</div>
+<body>
 
-<div class="container">
-    <div class="section">
-        <h2 class="section-title">News & launches</h2>
-        <div class="card-grid">
-            <div class="card">
-                <h3 class="card-title">Material 3 update</h3>
-                <p class="card-content">The latest version introduces dynamic color and updated component styles.</p>
-            </div>
-            <div class="card">
-                <h3 class="card-title">New components</h3>
-                <p class="card-content">Check out the newly added components in the Material 3 library.</p>
-            </div>
-            <div class="card">
-                <h3 class="card-title">Design resources</h3>
-                <p class="card-content">Download the latest design kits for Figma and Adobe XD.</p>
-            </div>
-        </div>
+  <div class="header">
+    <!-- Replace with your logo -->
+    <img src="images/logo.png" alt="KeyBank 200 Logo" />
+    <svg width="100%" height="100" viewBox="0 0 500 100">
+        <defs>
+          <path id="curve" d="M50,20 Q250,100 450,20" />
+        </defs>
+        <text width="500">
+          <textPath href="#curve" startOffset="50%" text-anchor="middle" fill="#d00000" font-size="35px" font-family="Arial" font-weight="bold">
+            Where moments matter
+          </textPath>
+        </text>
+      </svg>
+  </div>
+
+  <div class="grid-container">
+    <!-- First group -->
+    <div class="section-title">Consumer Services</div>
+    <div class="icon-grid">
+      <div class="icon-item">
+        <div class="icon-circle"><span class="material-symbols-outlined">account_balance</span></div>
+        <div class="icon-label">General</div>
+      </div>
+      <div class="icon-item">
+        <div class="icon-circle"><span class="material-symbols-outlined">database</span></div>
+        <div class="icon-label">General</div>
+      </div>
+      <div class="icon-item">
+        <div class="icon-circle"><span class="material-symbols-outlined">home</span></div>
+        <div class="icon-label">General</div>
+      </div>
+      <div class="icon-item">
+        <div class="icon-circle"><span class="material-symbols-outlined">credit_card</span></div>
+        <div class="icon-label">General</div>
+      </div>
+      <div class="icon-item">
+        <div class="icon-circle"><span class="material-symbols-outlined">school</span></div>
+        <div class="icon-label">General</div>
+      </div>
     </div>
-</div>
+  
+    <!-- Second group -->
+    <div class="section-title" style="margin-top: 50px;">Business Services</div>
+    <div class="icon-grid">
+      <div class="icon-item">
+        <div class="icon-circle"><span class="material-symbols-outlined">mail</span></div>
+        <div class="icon-label">General</div>
+      </div>
+      <div class="icon-item">
+        <div class="icon-circle"><span class="material-symbols-outlined">shopping_cart</span></div>
+        <div class="icon-label">General</div>
+      </div>
+      <div class="icon-item">
+        <div class="icon-circle"><span class="material-symbols-outlined">storefront</span></div>
+        <div class="icon-label">General</div>
+      </div>
+      <div class="icon-item">
+        <div class="icon-circle"><span class="material-symbols-outlined">menu_book</span></div>
+        <div class="icon-label">General</div>
+      </div>
+      <div class="icon-item">
+        <div class="icon-circle"><span class="material-symbols-outlined">key</span></div>
+        <div class="icon-label">General</div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
+
+
+  
