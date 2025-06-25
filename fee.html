@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Centered Toggle PDF Viewer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .toggle-container {
+      display: inline-flex;
+      border: 2px solid #007BFF;
+      border-radius: 25px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .toggle-button {
+      padding: 10px 30px;
+      font-size: 1em;
+      background-color: white;
+      border: none;
+      color: #007BFF;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .toggle-button.active {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    #pdfViewer {
+      width: 80%;
+      max-width: 900px;
+      height: 600px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toggle-container">
+    <button id="form1Btn" class="toggle-button active" onclick="showPDF('form1.pdf', this)">Form 1</button>
+    <button id="form2Btn" class="toggle-button" onclick="showPDF('form2.pdf', this)">Form 2</button>
+  </div>
+
+  <iframe id="pdfViewer" src="form1.pdf" type="application/pdf"></iframe>
+
+  <script>
+    function showPDF(file, clickedBtn) {
+      document.getElementById('pdfViewer').src = file;
+
+      // Toggle button styles
+      document.querySelectorAll('.toggle-button').forEach(btn => btn.classList.remove('active'));
+      clickedBtn.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
