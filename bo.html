@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Centered Toggle Table with Title</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2em;
+      color: #333;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    #toggleContent {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Employee / Product Info</h1>
+  <button onclick="toggleContent()">Toggle Table</button>
+
+  <div id="toggleContent">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Department</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alice</td>
+          <td>HR</td>
+        </tr>
+        <tr>
+          <td>Bob</td>
+          <td>Finance</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    let toggleState = false;
+
+    function toggleContent() {
+      const contentDiv = document.getElementById("toggleContent");
+      toggleState = !toggleState;
+
+      if (toggleState) {
+        contentDiv.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Pen</td>
+                <td>$1.00</td>
+              </tr>
+              <tr>
+                <td>Notebook</td>
+                <td>$2.50</td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+      } else {
+        contentDiv.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Department</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Alice</td>
+                <td>HR</td>
+              </tr>
+              <tr>
+                <td>Bob</td>
+                <td>Finance</td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>
