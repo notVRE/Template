@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Centered Toggle Table with Title</title>
+  <title>Toggle Between Tables</title>
   <style>
     body {
       font-family: sans-serif;
@@ -15,18 +15,32 @@
 
     h1 {
       margin-bottom: 20px;
-      font-size: 2em;
-      color: #333;
     }
 
-    button {
-      padding: 10px 20px;
-      font-size: 1em;
+    .toggle-container {
+      display: inline-flex;
+      border: 2px solid #007BFF;
+      border-radius: 25px;
+      overflow: hidden;
       margin-bottom: 20px;
-      cursor: pointer;
     }
 
-    #toggleContent {
+    .toggle-button {
+      padding: 10px 30px;
+      font-size: 1em;
+      background-color: white;
+      border: none;
+      color: #007BFF;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .toggle-button.active {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    #tableContainer {
       width: 100%;
       max-width: 600px;
     }
@@ -49,43 +63,70 @@
 </head>
 <body>
 
-  <h1>Employee / Product Info</h1>
-  <button onclick="toggleContent()">Toggle Table</button>
+  <h1>Toggle Between Tables</h1>
 
-  <div id="toggleContent">
+  <div class="toggle-container">
+    <button class="toggle-button active" onclick="showTable(1, this)">Table 1</button>
+    <button class="toggle-button" onclick="showTable(2, this)">Table 2</button>
+  </div>
+
+  <div id="tableContainer">
+    <!-- Default Table 1 -->
     <table>
       <thead>
         <tr>
           <th>Name</th>
-          <th>Department</th>
+          <th>Role</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Alice</td>
-          <td>HR</td>
+          <td>Manager</td>
         </tr>
         <tr>
           <td>Bob</td>
-          <td>Finance</td>
+          <td>Accountant</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <script>
-    let toggleState = false;
+    function showTable(index, button) {
+      const container = document.getElementById('tableContainer');
 
-    function toggleContent() {
-      const contentDiv = document.getElementById("toggleContent");
-      toggleState = !toggleState;
+      // Toggle active class
+      document.querySelectorAll('.toggle-button').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
 
-      if (toggleState) {
-        contentDiv.innerHTML = `
+      if (index === 1) {
+        container.innerHTML = `
           <table>
             <thead>
               <tr>
-                <th>Product</th>
+                <th>Name</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Alice</td>
+                <td>Manager</td>
+              </tr>
+              <tr>
+                <td>Bob</td>
+                <td>Accountant</td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+      } else {
+        container.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
                 <th>Price</th>
               </tr>
             </thead>
@@ -97,27 +138,6 @@
               <tr>
                 <td>Notebook</td>
                 <td>$2.50</td>
-              </tr>
-            </tbody>
-          </table>
-        `;
-      } else {
-        contentDiv.innerHTML = `
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Department</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Alice</td>
-                <td>HR</td>
-              </tr>
-              <tr>
-                <td>Bob</td>
-                <td>Finance</td>
               </tr>
             </tbody>
           </table>
