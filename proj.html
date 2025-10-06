@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Area code</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
+    <h1 class="text-2xl font-bold mb-6 text-blue-600">📞 US Area Code Lookup</h1>
+    <input 
+      id="areaCodeInput" 
+      type="text" 
+      placeholder="Enter area code (e.g., 208)"
+      class="w-full border border-gray-300 rounded-lg p-3 text-center mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+      maxlength="3"
+    />
+    <div id="result" class="mt-6 text-lg font-semibold text-gray-800"></div>
+  </div>
+
+  <!-- Include JS file with data -->
+  <script src="areacode.js"></script>
+
+  <script>
+    const input = document.getElementById("areaCodeInput");
+    const resultDiv = document.getElementById("result");
+    let timer = null;
+
+    input.addEventListener("input", () => {
+      clearInterval(timer);
+      const code = input.value.trim();
+
+      if (code.length === 0) {
+        resultDiv.textContent = "";
+        return;
+      }
+
+      if (code.length < 3) {
+        resultDiv.textContent = "⏳ Keep typing...";
+        return;
+      }
+
+      const data = areaCodes[code];
+      if (!data) {
+        resultDiv.textContent = "❌ Area code not found.";
+        return;
+      }
+
+      function updateTime() {
+        const now = new Date();
+        const tzs = Array.isArray(data.tz) ? data.tz : [data.tz];
+        const restricted = notAvailableStates.includes(data.state);
+
+        let message = `
+          📍 <span class="text-blue-600">${code}</span> is in 
+          <span class="text-green-600">${data.state}</span><br>
+        `;
+
+        tzs.forEach(tz => {
+          const local = new Date(now.toLocaleString("en-US", { timeZone: tz }));
+          const hours = local.getHours();
+          const minutes = local.getMinutes().toString().padStart(2, "0");
+          const seconds = local.getSeconds().toString().padStart(2, "0");
+          const ampm = hours >= 12 ? "PM" : "AM";
+          const viable = hours >= 8;
+          const tzName = tz.replace("America/", "").replace("_", " ");
+
+          message += `
+            🕒 ${tzName}: 
+            <span class="text-purple-600">${hours % 12 || 12}:${minutes}:${seconds} ${ampm}</span>
+            ${viable ? "✅ Viable" : "❌ Not Viable"}<br>
+          `;
+        });
+
+        if (restricted) {
+          message += `<span class="text-red-600 mt-2 inline-block">🚫 Not Available (Restricted State)</span>`;
+        }
+
+        resultDiv.innerHTML = message;
+      }
+
+      updateTime();
+      timer = setInterval(updateTime, 1000);
+    });
+  </script>
+</body>
+</html>
