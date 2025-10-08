@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sidebar with Right Submenu (Offline)</title>
+    <title>OTONG</title>
 
-    <!-- TailwindCSS & React -->
+    <!-- Tailwind & React -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script
       src="https://unpkg.com/react@18/umd/react.development.js"
@@ -16,11 +16,12 @@
       crossorigin
     ></script>
 
-    <!-- Material Icons -->
+    <!-- Google Material Icons -->
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
+
     <style>
       .material-symbols-outlined {
         font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
@@ -33,106 +34,132 @@
       }
     </style>
   </head>
-  <body class="bg-gray-100">
-    <div id="root" class="h-screen"></div>
+
+  <body class="bg-gray-100 h-screen overflow-hidden">
+    <div id="root" class="h-full"></div>
 
     <script>
       const { useState, createElement } = React;
 
-      // Sidebar Component
-      function Sidebar({ activeFile, setActiveFile }) {
-        const [openMenu, setOpenMenu] = useState(null);
-
+      // Sidebar component
+      function Sidebar({
+        activePage,
+        setActivePage,
+        activeMenu,
+        setActiveMenu,
+      }) {
         const menu = [
-          { name: "Home", icon: "home", file: "pages/home.html" },
+          { name: "Home", icon: "home" },
           {
             name: "Account",
             icon: "person",
             sub: [
-              { name: "Profile", file: "pages/account/profile.html" },
-              { name: "Security", file: "pages/account/security.html" },
+              "Profile",
+              "Security",
+              "Profile",
+              "Security",
+              "Profile",
+              "Security",
+              "Profile",
+              "Security",
+              "Profile",
+              "Security",
+              "Profile",
+              "Security",
+              "Profile",
+              "Security",
+              "Profile",
+              "Security",
+              "Profile",
+              "Security",
+              "Profile",
+              "Security",
+              "Profile",
+              "Security",
+              "Profile",
+              "Security",
+              "Profile",
+              "Security",
+              "Profile",
+              "Security",
+              "Profile",
+              "Security",
             ],
           },
-          { name: "Settings", icon: "settings", file: "proj.html" },
+          {
+            name: "Settings",
+            icon: "settings",
+            sub: ["General", "Notifications"],
+          },
         ];
 
         return createElement(
           "div",
-          { className: "flex" },
-          // Primary Sidebar
+          { className: "flex h-full" },
+          // Main Sidebar
           createElement(
             "div",
             {
               className:
-                "w-20 bg-white shadow-lg flex flex-col items-center py-4",
+                "w-20 bg-white shadow-lg flex flex-col items-center py-4 overflow-y-auto",
             },
-            // Logo at the top
+            // Logo
             createElement(
               "div",
-              {
-                className: "mb-6 cursor-pointer",
-                onClick: () => {
-                  setActiveFile("pages/home.html");
-                  setOpenMenu(null);
-                },
-              },
+              { className: "mb-6" },
               createElement("img", {
                 src: "logo.png",
                 alt: "Logo",
-                className: "w-10 h-10 rounded-full shadow-md",
+                className: "w-10 h-10 rounded-full",
               })
             ),
+            // Menu Items
             menu.map((item, index) =>
               createElement(
                 "div",
-                { key: index, className: "w-full" },
-                // Main menu button
-                createElement(
-                  "div",
-                  {
-                    className:
-                      "cursor-pointer text-gray-700 hover:bg-gray-100 transition-all duration-300 p-2 w-full flex flex-col items-center " +
-                      (activeFile === item.file
-                        ? "bg-blue-100 text-blue-700"
-                        : ""),
-                    onClick: () => {
-                      if (item.sub) {
-                        setOpenMenu(openMenu === item.name ? null : item.name);
-                      } else {
-                        setActiveFile(item.file);
-                        setOpenMenu(null);
-                      }
-                    },
+                {
+                  key: index,
+                  className:
+                    "cursor-pointer text-gray-700 hover:bg-gray-100 transition-all duration-300 p-2 w-full flex flex-col items-center " +
+                    (activeMenu === item.name
+                      ? "bg-blue-100 text-blue-700"
+                      : ""),
+                  onClick: () => {
+                    if (item.sub) {
+                      setActiveMenu(
+                        activeMenu === item.name ? null : item.name
+                      );
+                    } else {
+                      setActivePage(item.name);
+                      setActiveMenu(null);
+                    }
                   },
-                  createElement(
-                    "span",
-                    { className: "material-symbols-outlined" },
-                    item.icon
-                  ),
-                  createElement(
-                    "span",
-                    { className: "text-xs mt-1" },
-                    item.name
-                  )
-                )
+                },
+                createElement(
+                  "span",
+                  { className: "material-symbols-outlined" },
+                  item.icon
+                ),
+                createElement("span", { className: "text-xs mt-1" }, item.name)
               )
             )
           ),
-          // Submenu Sidebar (right)
-          openMenu
+
+          // Submenu (only when active)
+          activeMenu
             ? createElement(
                 "div",
                 {
                   className:
-                    "w-48 bg-gray-50 border-r border-gray-200 shadow-inner flex flex-col py-4",
+                    "w-48 bg-gray-50 border-r border-gray-200 shadow-inner flex flex-col py-4 overflow-y-auto",
                 },
                 createElement(
                   "h3",
                   { className: "px-4 text-gray-600 font-semibold mb-2" },
-                  openMenu
+                  activeMenu
                 ),
                 menu
-                  .find((m) => m.name === openMenu)
+                  .find((m) => m.name === activeMenu)
                   .sub.map((subItem, i) =>
                     createElement(
                       "div",
@@ -140,12 +167,15 @@
                         key: i,
                         className:
                           "cursor-pointer text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md mx-2 " +
-                          (activeFile === subItem.file
+                          (activePage === subItem
                             ? "bg-blue-100 text-blue-700"
                             : ""),
-                        onClick: () => setActiveFile(subItem.file),
+                        onClick: () => {
+                          setActivePage(subItem);
+                          setActiveMenu(activeMenu); // Keep submenu open until another parent clicked
+                        },
                       },
-                      subItem.name
+                      subItem
                     )
                   )
               )
@@ -155,13 +185,37 @@
 
       // Main App
       function App() {
-        const [activeFile, setActiveFile] = useState("pages/home.html");
+        const [activePage, setActivePage] = useState("Home");
+        const [activeMenu, setActiveMenu] = useState(null);
+
+        const pageFiles = {
+          Home: "pages/home.html",
+          Account: "pages/account.html",
+          Settings: "pages/settings.html",
+          Profile: "pages/account/profile.html",
+          Security: "pages/account/security.html",
+          General: "pages/settings/general.html",
+          Notifications: "proj.html",
+        };
 
         return createElement(
           "div",
           { className: "flex h-full" },
-          createElement(Sidebar, { activeFile, setActiveFile }),
-          createElement("iframe", { src: activeFile })
+          createElement(Sidebar, {
+            activePage,
+            setActivePage,
+            activeMenu,
+            setActiveMenu,
+          }),
+          createElement(
+            "div",
+            { className: "flex-1 bg-white overflow-hidden" },
+            createElement("iframe", {
+              src: pageFiles[activePage] || "pages/404.html",
+              title: activePage,
+              className: "w-full h-full",
+            })
+          )
         );
       }
 
