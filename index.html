@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OTONG</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title></title>
 
-    <!-- Tailwind & React -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script
-      src="https://unpkg.com/react@18/umd/react.development.js"
-      crossorigin
-    ></script>
-    <script
-      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-      crossorigin
-    ></script>
+    <!-- Tailwind -->
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+    <script src="https://cdn.tailwindcss.com" defer></script>
 
-    <!-- Google Material Icons -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin defer></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin defer></script>
+
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 
     <style>
       .material-symbols-outlined {
-        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         font-size: 24px;
       }
       iframe {
-        border: none;
         width: 100%;
         height: 100%;
+        border: none;
       }
     </style>
   </head>
@@ -38,189 +32,124 @@
   <body class="bg-gray-100 h-screen overflow-hidden">
     <div id="root" class="h-full"></div>
 
-    <script>
-      const { useState, createElement } = React;
+    <script defer>
+      document.addEventListener("DOMContentLoaded", () => {
 
-      // Sidebar component
-      function Sidebar({
-        activePage,
-        setActivePage,
-        activeMenu,
-        setActiveMenu,
-      }) {
-        const menu = [
-          { name: "Home", icon: "home" },
-          {
-            name: "Account",
-            icon: "person",
-            sub: [
-              "Profile",
-              "Security",
-              "Profile",
-              "Security",
-              "Profile",
-              "Security",
-              "Profile",
-              "Security",
-              "Profile",
-              "Security",
-              "Profile",
-              "Security",
-              "Profile",
-              "Security",
-              "Profile",
-              "Security",
-              "Profile",
-              "Security",
-              "Profile",
-              "Security",
-              "Profile",
-              "Security",
-              "Profile",
-              "Security",
-              "Profile",
-              "Security",
-              "Profile",
-              "Security",
-              "Profile",
-              "Security",
-            ],
-          },
-          {
-            name: "Settings",
-            icon: "settings",
-            sub: ["General", "Notifications"],
-          },
-        ];
+        const { useState, createElement } = React;
 
-        return createElement(
-          "div",
-          { className: "flex h-full" },
-          // Main Sidebar
-          createElement(
+        // Sidebar component
+        function Sidebar({ activePage, setActivePage, activeMenu, setActiveMenu }) {
+          const menu = [
+            { name: "Home", icon: "home" },
+            { name: "Account user", icon: "person", sub: ["Profile", "Security"] },
+            { name: "Settings", icon: "settings", sub: ["General", "Notifications"] }
+          ];
+
+          return createElement(
             "div",
-            {
-              className:
-                "w-20 bg-white shadow-lg flex flex-col items-center py-4 overflow-y-auto",
-            },
-            // Logo
+            { className: "flex h-full" },
+
+            // Main Sidebar
             createElement(
               "div",
-              { className: "mb-6" },
-              createElement("img", {
-                src: "logo.png",
-                alt: "Logo",
-                className: "w-10 h-10 rounded-full",
-              })
-            ),
-            // Menu Items
-            menu.map((item, index) =>
-              createElement(
-                "div",
-                {
-                  key: index,
-                  className:
-                    "cursor-pointer text-gray-700 hover:bg-gray-100 transition-all duration-300 p-2 w-full flex flex-col items-center " +
-                    (activeMenu === item.name
-                      ? "bg-blue-100 text-blue-700"
-                      : ""),
-                  onClick: () => {
-                    if (item.sub) {
-                      setActiveMenu(
-                        activeMenu === item.name ? null : item.name
-                      );
-                    } else {
-                      setActivePage(item.name);
-                      setActiveMenu(null);
+              { className: "w-20 bg-white shadow-lg flex flex-col items-center py-4 overflow-y-auto" },
+
+              // Logo
+              createElement("div", { className: "mb-6" },
+                createElement("img", {
+                  src: "logo.png",
+                  alt: "Logo",
+                  className: "w-10 h-10 rounded-full"
+                })
+              ),
+
+              // Menu Items
+              menu.map((item, index) =>
+                createElement(
+                  "div",
+                  {
+                    key: index,
+                    className:
+                      "cursor-pointer text-gray-700 hover:bg-gray-100 transition-all duration-300 p-2 w-full flex flex-col items-center " +
+                      (activeMenu === item.name ? "bg-blue-100 text-blue-700" : ""),
+                    onClick: () => {
+                      if (item.sub) {
+                        setActiveMenu(activeMenu === item.name ? null : item.name);
+                      } else {
+                        setActivePage(item.name);
+                        setActiveMenu(null);
+                      }
                     }
                   },
-                },
-                createElement(
-                  "span",
-                  { className: "material-symbols-outlined" },
-                  item.icon
-                ),
-                createElement("span", { className: "text-xs mt-1" }, item.name)
+                  createElement("span", { className: "material-symbols-outlined" }, item.icon),
+                  createElement("span", { className: "text-xs mt-1" }, item.name)
+                )
               )
-            )
-          ),
+            ),
 
-          // Submenu (only when active)
-          activeMenu
-            ? createElement(
-                "div",
-                {
-                  className:
-                    "w-48 bg-gray-50 border-r border-gray-200 shadow-inner flex flex-col py-4 overflow-y-auto",
-                },
-                createElement(
-                  "h3",
-                  { className: "px-4 text-gray-600 font-semibold mb-2" },
-                  activeMenu
-                ),
-                menu
-                  .find((m) => m.name === activeMenu)
-                  .sub.map((subItem, i) =>
+            // Submenu Sidebar
+            activeMenu
+              ? createElement(
+                  "div",
+                  { className: "w-48 bg-gray-50 border-r border-gray-200 shadow-inner flex flex-col py-4 overflow-y-auto" },
+                  createElement("h3", { className: "px-4 text-gray-600 font-semibold mb-2" }, activeMenu),
+                  menu.find((m) => m.name === activeMenu).sub.map((subItem, i) =>
                     createElement(
                       "div",
                       {
                         key: i,
                         className:
                           "cursor-pointer text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md mx-2 " +
-                          (activePage === subItem
-                            ? "bg-blue-100 text-blue-700"
-                            : ""),
+                          (activePage === subItem ? "bg-blue-100 text-blue-700" : ""),
                         onClick: () => {
                           setActivePage(subItem);
-                          setActiveMenu(activeMenu); // Keep submenu open until another parent clicked
-                        },
+                          setActiveMenu(activeMenu); // Keep submenu open
+                        }
                       },
                       subItem
                     )
                   )
-              )
-            : null
-        );
-      }
+                )
+              : null
+          );
+        }
 
-      // Main App
-      function App() {
-        const [activePage, setActivePage] = useState("Home");
-        const [activeMenu, setActiveMenu] = useState(null);
+        // Main App
+        function App() {
+          const [activePage, setActivePage] = useState("Home");
+          const [activeMenu, setActiveMenu] = useState(null);
 
-        const pageFiles = {
-          Home: "pages/home.html",
-          Account: "pages/account.html",
-          Settings: "pages/settings.html",
-          Profile: "pages/account/profile.html",
-          Security: "pages/account/security.html",
-          General: "pages/settings/general.html",
-          Notifications: "proj.html",
-        };
+          const pageFiles = {
+            Home: "pages/home.html",
+            "Account user": "pages/account.html",
+            Settings: "pages/settings.html",
+            Profile: "pages/account/profile.html",
+            Security: "pages/account/security.html",
+            General: "pages/settings/general.html",
+            Notifications: "pages/settings/notifications.html"
+          };
 
-        return createElement(
-          "div",
-          { className: "flex h-full" },
-          createElement(Sidebar, {
-            activePage,
-            setActivePage,
-            activeMenu,
-            setActiveMenu,
-          }),
-          createElement(
+          return createElement(
             "div",
-            { className: "flex-1 bg-white overflow-hidden" },
-            createElement("iframe", {
-              src: pageFiles[activePage] || "pages/404.html",
-              title: activePage,
-              className: "w-full h-full",
-            })
-          )
-        );
-      }
+            { className: "flex h-full" },
+            createElement(Sidebar, { activePage, setActivePage, activeMenu, setActiveMenu }),
+            createElement(
+              "div",
+              { className: "flex-1 bg-white overflow-hidden" },
+              createElement("iframe", {
+                src: pageFiles[activePage] || "pages/404.html",
+                title: activePage,
+                className: "w-full h-full"
+              })
+            )
+          );
+        }
 
-      const root = ReactDOM.createRoot(document.getElementById("root"));
-      root.render(createElement(App));
+        // React Render AFTER DOM is ready
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(createElement(App));
+
+      });
     </script>
   </body>
 </html>
